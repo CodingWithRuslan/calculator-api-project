@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for the HTML document -->
+    <meta charset="UTF-8">
+    <!-- Title of the web page -->
+    <title>Calculator</title>
+    <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Input for the first number -->
+    <input type="number" id="operand1">
+    
+    <!-- Dropdown for selecting the arithmetic operation -->
+    <select id="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    
+    <!-- Input for the second number -->
+    <input type="number" id="operand2">
+    
+    <!-- Button to trigger the calculation -->
+    <button onclick="calculate()">Calculate</button>
+    
+    <!-- Display area for the result -->
+    <p>Result: <span id="result"></span></p>
+
+    <script>
+        // Asynchronous function to calculate the result based on user input and operation
+        async function calculate() {
+            // Fetch the values from the inputs and dropdown
+            const operand1 = parseFloat(document.getElementById('operand1').value);
+            const operand2 = parseFloat(document.getElementById('operand2').value);
+            const operation = document.getElementById('operation').value;
+
+            try {
+                // Make a POST request to the server-side API for calculation
+                const response = await fetch('http://localhost:5000/calculate', {
+                    method: 'POST',
+                    // Indicate that we're sending JSON data in the request body
+                    headers: { 'Content-Type': 'application/json' },
+                    // Send the operation and operands as a JSON string
+                    body: JSON.stringify({ operation, operands: [operand1, operand2] })
+                });
+                
+                // Parse the JSON response from the server
+                const data = await response.json();
+
+                // Check if there's an error in the response and display it
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // If no error, update the displayed result
+                    document.getElementById('result').textContent = data.result;
+                }
+            } catch (error) {
+                // Handle any errors that occur during the fetch or JSON parsing
+                alert("Error while calculating");
+            }
+        }
+    </script>
+</body>
+</html>

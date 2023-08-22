@@ -1,6 +1,33 @@
 # calculator-api project using Node.js .
  
 # i will include all the steps with explantation:
+Prerequisites:
+Node.js and npm: Ensure Node.js and npm (Node Package Manager) are installed. If not, download and install them from the Node.js official website.
+Setup and Execution Steps:
+Clone the Repository:
+
+***Setup and Execution Steps***
+1.Clone the Repository:
+ git clone https://github.com/CodingWithRuslan/calculator-api-project.git
+
+2.Navigate to the Project Directory:
+ cd calculator-api-project
+
+3.Install Dependencies(To ensure the project runs without issues):
+ install its dependencies with the following command: npm install
+
+4.Run the Server:
+ node server.js
+ After executing, you should see the output: Server started on port 5000
+
+5.Access the Web Application:
+ http://localhost:5000
+
+Now, you can access the calculator web application and perform arithmetic operations.
+
+
+
+
 
 ***init of the project***
     1.Ensure Node.js and npm are Installed: You can verify by running the following commands in your terminal or command prompt: node -v .
